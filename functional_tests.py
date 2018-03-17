@@ -49,7 +49,7 @@ class NewVisitorTest(unittest.TestCase):
         self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
         # There is still a text box inviting her to add another item.
         # enters "Use peacock feathers to make a fly" (Edith is very methodical)
-        # self.fail('Finish the test!')
+        self.fail('Finish the test!')
         # The page updates again, and now shows both items on her list
 
         # Edith wonders wheter the site will remember her list. Then she sees
