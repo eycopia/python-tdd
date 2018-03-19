@@ -1,5 +1,6 @@
-db.sqlite3 
+db.sqlite3
 geckodriver.log
 venv
-__pychache__ 
-*.pyc 
+__pychache__
+*.pyc
+/static
