@@ -74,9 +74,13 @@ WSGI_APPLICATION = 'superlists.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+DBBACK = "sqlite3";
+if(os.environ.get('DB_NAME', False) != False):
+    DBBACK  = 'postgresql'
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.' + os.environ.get('DB_NAME','sqlite3'),
+        'ENGINE': 'django.db.backends.' + DBBACK,
         'NAME': os.environ.get('DB_NAME',os.path.join(BASE_DIR, 'db.sqlite3')),
         'USER': os.environ.get('DB_USER',''),
         'PASSWORD': os.environ.get('DB_PASSWORD',''),
