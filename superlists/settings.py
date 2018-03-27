@@ -76,18 +76,30 @@ WSGI_APPLICATION = 'superlists.wsgi.application'
 
 DBBACK = "sqlite3";
 if(os.environ.get('DB_NAME', False) != False):
-    DBBACK  = 'postgresql'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.' + DBBACK,
-        'NAME': os.environ.get('DB_NAME',os.path.join(BASE_DIR, 'db.sqlite3')),
-        'USER': os.environ.get('DB_USER',''),
-        'PASSWORD': os.environ.get('DB_PASSWORD',''),
-        'HOST': os.environ.get('DB_HOST',''),
-        'PORT': os.environ.get('DB_PORT','')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('DB_NAME',os.path.join(BASE_DIR, 'db.sqlite3')),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT')
+        }
     }
-}
+    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        }
+    }
+
+
+
 
 
 # Password validation
@@ -122,14 +134,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
