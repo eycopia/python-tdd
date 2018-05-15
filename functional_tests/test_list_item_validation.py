@@ -1,7 +1,7 @@
 from selenium.webdriver.common.keys import Keys
 from unittest import skip
 from .base import FunctionalTest
-
+import time
 class ItemValidationTest(FunctionalTest):
 
         def get_error_element(self):
